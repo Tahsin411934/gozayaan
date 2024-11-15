@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\AddFacilityController;
+use App\Http\Controllers\PropertyImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +34,7 @@ require __DIR__.'/auth.php';
 
 
 Route::resource('properties', PropertyController::class);
+Route::resource('facilities', AddFacilityController::class);
+Route::resource('property_images', PropertyImageController::class);
+// Route::resource('AddImages', AddImageController::class);
+

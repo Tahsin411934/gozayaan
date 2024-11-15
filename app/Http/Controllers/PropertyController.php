@@ -4,98 +4,118 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class PropertyController extends Controller
 {
-    // Display a listing of the properties
     public function index()
     {
-        $properties = Property::all();
-        return view('properties.index', compact('properties'));
+        $properties = Property::all(); // Retrieve all properties
+    
+        return view('properties.index', compact('properties')); // Load view
     }
 
-    // Show the form for creating a new property
-    public function create()
-    {
-        return view('properties.create');
-    }
-
-    // Store a newly created property in storage
     public function store(Request $request)
     {
-        // Validate form data
-        $validatedData = $request->validate([
-            'category_id' => 'required|integer',
-            'destination_id' => 'required|integer',
-            'property_name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'district-city' => 'required|string|max:255',  // Use 'district-city' as in the form
-            'address' => 'required|string|max:255',
-            'lat-long' => 'nullable|string',
-            'main_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'isactive' => 'boolean',
+
+        
+        try {
+          $data=  $request->validate([
+                'category_id' => 'required|integer',
+                'destination_id' => 'required|integer',
+                'property_name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'city_district' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'lat_long' => 'required|string|max:255', 
+                'main_img' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+                'isactive' => 'required|boolean',
+            ]);
+
+           
+        }  catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors()); 
+        }
+       
+
+        // Store the uploaded image
+        $filePath = $request->file('main_img')->store('properties', 'public');
+
+        // Create a new property entry
+        Property::create([
+            'category_id' => $request->category_id,
+            'destination_id' => $request->destination_id,
+            'property_name' => $request->property_name,
+            'description' => $request->description,
+            'district_city' => $request->{'city_district'},
+            'address' => $request->address,
+            'lat_long' => $request->{'lat_long'},
+            'main_img' => $filePath,
+            'isactive' => $request->isactive,
         ]);
 
-        // Handle file upload if it exists
-        if ($request->hasFile('main_img')) {
-            $imageName = time() . '.' . $request->main_img->extension();
-            $request->main_img->move(public_path('images'), $imageName);
-            $validatedData['main_img'] = $imageName;
-        }
-
-        // Create a new property record in the database
-        Property::create($validatedData);
-
+        // Redirect to properties index with success message
         return redirect()->route('properties.index')->with('success', 'Property added successfully!');
     }
 
-    // Display the specified property
-    public function show(Property $property)
+    public function update(Request $request, $id)
     {
-        return view('properties.show', compact('property'));
-    }
+        // Find the property by ID or fail if not found
+        $property = Property::findOrFail($id);
 
-    // Show the form for editing the specified property
-    public function edit(Property $property)
-    {
-        return view('properties.edit', compact('property'));
-    }
-
-    // Update the specified property in storage
-    public function update(Request $request, Property $property)
-    {
-        // Validate form data for updating
-        $validatedData = $request->validate([
-            'category_id' => 'required|integer',
-            'destination_id' => 'required|integer',
-            'property_name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'district-city' => 'required|string|max:255', // Use 'district-city' as in the form
-            'address' => 'required|string|max:255',
-            'lat_long' => 'nullable|string',
-            'main_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'isactive' => 'boolean',
-        ]);
-
-        // Handle file upload if it exists
-        if ($request->hasFile('main_img')) {
-            $imageName = time() . '.' . $request->main_img->extension();
-            $request->main_img->move(public_path('images'), $imageName);
-            $validatedData['main_img'] = $imageName;
+        // Validate the incoming data
+        try {
+            // Perform validation with the required rules
+            $validated = $request->validate([
+                'destination_id' => 'required|integer',
+                'property_name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'city_district' => 'required|string|max:255', // Change this to match the input field name
+                'address' => 'required|string|max:255',
+                'lat_long' => 'required|string|max:255', // Change this to match the input field name
+                'isactive' => 'nullable|boolean',
+                'main_img' => 'required|string|max:255', // Validate the image if present
+               
+            ]);
+         
+            // Debugging: Show the validated data
+          
+    
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle the validation exception
+            dd($e->errors()); // This will show the validation error messages
         }
+       
+        
 
-        // Update the existing property record
-        $property->update($validatedData);
+        // Assign validated data to the property model
+       
+        $property->destination_id = $validated['destination_id'];
+        $property->property_name = $validated['property_name'];
+        $property->description = $validated['description'];
+        $property->district_city = $validated['city_district'];
+        $property->address = $validated['address'];
+        $property->lat_long = $validated['lat_long'];
+        $property->main_img = $validated['main_img'];
+        $property->isactive = $request->has('isactive') ? true : false;
 
-        return redirect()->route('properties.index')->with('success', 'Property updated successfully!');
+        $property->save();
+
+        
+        return redirect()->route('properties.index')->with('status', 'Property updated successfully!');
     }
 
-    // Remove the specified property from storage
     public function destroy(Property $property)
     {
-        // Delete the property record
+        // Delete the property and its associated image
+        if ($property->main_img) {
+            Storage::delete($property->main_img);
+        }
+
         $property->delete();
 
+        // Redirect to properties index with success message
         return redirect()->route('properties.index')->with('success', 'Property deleted successfully!');
     }
 }

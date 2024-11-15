@@ -11,7 +11,7 @@ class Property extends Model
 
     protected $table = 'property';
     
-    protected $primaryKey = 'destination_id'; // Set the primary key
+    protected $primaryKey = 'property_id'; // Set the primary key
 
     public $incrementing = true; // Disable auto-increment if necessary
 
@@ -22,10 +22,16 @@ class Property extends Model
         'destination_id',
         'property_name',
         'description',
-        'district-city',
+        'district_city',
         'address',
-        'lat-long',
+        'lat_long',
         'main_img',
         'isactive',
     ];
+    // Property.php
+public function facilities()
+{
+    return $this->hasMany(PropertyFacility::class, 'property_id', 'property_id');
+}
+
 }
