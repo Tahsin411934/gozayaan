@@ -35,6 +35,10 @@ require __DIR__.'/auth.php';
 
 Route::resource('properties', PropertyController::class);
 Route::resource('facilities', AddFacilityController::class);
-Route::resource('property_images', PropertyImageController::class);
+// Route::resource('property_images', PropertyImageController::class);
+Route::get('/property_images/{property_id}', [PropertyImageController::class, 'show'])->name('property_images.show');
+
+Route::post('/property_images', [PropertyImageController::class, 'store'])->name('property_images.store');
+Route::delete('/property_images/{image_id}', [PropertyImageController::class, 'destroy'])->name('property_images.destroy');
 // Route::resource('AddImages', AddImageController::class);
 

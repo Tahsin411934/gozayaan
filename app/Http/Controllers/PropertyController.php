@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\ServiceCategory ;
+use App\Models\Destination ;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
@@ -12,13 +14,15 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = Property::all(); // Retrieve all properties
-    
-        return view('properties.index', compact('properties')); // Load view
+        $categories = ServiceCategory::all();
+        $destinations = Destination::all();
+        return view('properties.index', compact('properties', 'categories', 'destinations')); // Load view
     }
 
     public function store(Request $request)
     {
 
+        
         
         try {
           $data=  $request->validate([
@@ -68,7 +72,7 @@ class PropertyController extends Controller
         try {
             // Perform validation with the required rules
             $validated = $request->validate([
-                'destination_id' => 'required|integer',
+                'destination_id' => 'nullable|integer',
                 'property_name' => 'required|string|max:255',
                 'description' => 'required|string',
                 'city_district' => 'required|string|max:255', // Change this to match the input field name
@@ -91,7 +95,7 @@ class PropertyController extends Controller
 
         // Assign validated data to the property model
        
-        $property->destination_id = $validated['destination_id'];
+        // $property->destination_id = $validated['destination_id'];
         $property->property_name = $validated['property_name'];
         $property->description = $validated['description'];
         $property->district_city = $validated['city_district'];
@@ -103,7 +107,7 @@ class PropertyController extends Controller
         $property->save();
 
         
-        return redirect()->route('properties.index')->with('status', 'Property updated successfully!');
+        return redirect()->route('properties.index')->with('success', 'Property updated successfully!');
     }
 
     public function destroy(Property $property)

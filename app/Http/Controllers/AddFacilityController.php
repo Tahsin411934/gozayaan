@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PropertyFacility;
 use App\Models\Property;
+use App\Models\PropertyFacilityType;
 use Illuminate\Http\Request;
 
 class AddFacilityController extends Controller
@@ -72,12 +73,20 @@ class AddFacilityController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        // Fetch the property with its facilities using the ID
-        $property = Property::with('facilities')->findOrFail($id);
-    
-        return view('facilities.show', compact('property', 'id'));
-    }
+{
+    // Fetch the property with its facilities
+    $property = Property::with('facilities')->findOrFail($id);
+
+    // Fetch facilities type based on the category_id of the property
+    $facilitiestype = PropertyFacilityType::where('property_category', $property->category_id)->get();
+
+    // Debugging to verify values (optional)
+    //  dd($property->category_id, $facilitiestype);
+
+    // Return the view with data
+    return view('facilities.show', compact('property', 'id', 'facilitiestype'));
+}
+
     
     /**
      * Show the form for editing the specified resource.

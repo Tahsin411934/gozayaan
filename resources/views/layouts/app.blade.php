@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.0/css/buttons.dataTables.min.css">
 
     <!-- Vite Assets -->
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css','resources/js/app.js']);
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+
 </head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
