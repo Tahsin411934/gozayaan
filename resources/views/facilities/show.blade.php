@@ -178,16 +178,18 @@
         });
     }
 </script>
-<script>
-    @if (session('success'))
-      Swal.fire({
-        title: 'Success!',
-        text: '{{ session('success') }}',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      })
-    @endif
-  </script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+        });
+    </script>
+@endif
   <script>
     function enableEdit(button) {
         const form = button.closest('form'); // Select the closest form element

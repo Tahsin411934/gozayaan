@@ -75,6 +75,8 @@
                         
                         <a href="/property_images/{{$property->property_id}}"
                             class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600  save-button">Add Image</button>
+                        <a href="/property-summary/{{$property->property_id}}"
+                            class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600  save-button">Add Summary</button>
                         </td>
                     </tr>
                     @endforeach

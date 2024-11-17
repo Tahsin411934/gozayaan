@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\AddFacilityController;
 use App\Http\Controllers\PropertyImageController;
+use App\Http\Controllers\PropertySummaryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,4 +42,9 @@ Route::get('/property_images/{property_id}', [PropertyImageController::class, 's
 Route::post('/property_images', [PropertyImageController::class, 'store'])->name('property_images.store');
 Route::delete('/property_images/{image_id}', [PropertyImageController::class, 'destroy'])->name('property_images.destroy');
 // Route::resource('AddImages', AddImageController::class);
+
+
+
+Route::resource('property-summary', PropertySummaryController::class);
+
 

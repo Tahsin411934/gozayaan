@@ -7,22 +7,7 @@ use Illuminate\Http\Request;
 
 class PropertyImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $images = PropertyImage::all();
-        return view('property_images.index', compact('images'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('property_images.create');
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -57,45 +42,21 @@ class PropertyImageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($property_id)
-{
-    // Fetch property images using the property_id
-    $propertyImages = PropertyImage::where('property_id', $property_id)->get();
+    public function show($propertyId)
+    {
+        // Fetch the property images for the given property ID
+        $propertyImages = PropertyImage::where('property_id', $propertyId)->get();
+    
+        // Pass the propertyImages to the view
+        return view('property_images.show', compact('propertyImages', 'propertyId'));
+    }
+    
+
+
+
+
    
-    // Check if the property images exist
-    if ($propertyImages->isEmpty()) {
-        abort(404, 'Property images not found.');
-    }
-    
-    // Return the view with the property images and property_id
-    return view('property_images.show', compact('propertyImages', 'property_id'));
-}
-
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PropertyImage $propertyImage)
-    {
-        return view('property_images.edit', compact('propertyImage'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, PropertyImage $propertyImage)
-    {
-        $validated = $request->validate([
-            'property_id' => 'required|exists:property,property_id',
-            'path' => 'required|string|max:255',
-            'caption' => 'nullable|string|max:255',
-        ]);
-
-        $propertyImage->update($validated);
-
-        return redirect()->route('property_images.index')->with('success', 'Property Image updated successfully.');
-    }
+   
 
     /**
      * Remove the specified resource from storage.

@@ -58,9 +58,9 @@ class PropertyController extends Controller
             'main_img' => $filePath,
             'isactive' => $request->isactive,
         ]);
-
+        session()->flash('success', 'Property added successfully!');
         // Redirect to properties index with success message
-        return redirect()->route('properties.index')->with('success', 'Property added successfully!');
+        return redirect()->route('properties.index');
     }
 
     public function update(Request $request, $id)

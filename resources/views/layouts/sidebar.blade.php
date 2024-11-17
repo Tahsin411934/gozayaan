@@ -29,7 +29,7 @@
                 </a>
             </li>
 
-            <!-- Products Dropdown -->
+            <!-- /properties Dropdown -->
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -39,7 +39,7 @@
                         <path
                             d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
                     </svg>
-                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Products</span>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Property</span>
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -48,9 +48,9 @@
                 </button>
                 <ul id="dropdown-products" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="/products"
+                        <a href="/properties"
                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Show
-                            Products</a>
+                            Property</a>
                     </li>
                 </ul>
             </li>
@@ -65,7 +65,7 @@
                         <path
                             d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
                     </svg>
-                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Supplier</span>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Demo</span>
                     <svg class="w-3 h-3 transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -76,7 +76,7 @@
                     <li>
                         <a href="/suppliers"
                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Show
-                            Supplier</a>
+                            demo </a>
                     </li>
                 </ul>
             </li>
@@ -90,7 +90,7 @@
                         <path
                             d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v14.286A1.857 1.857 0 0 0 1.857 18h14.286A1.857 1.857 0 0 0 18 16.143V1.857A1.857 1.857 0 0 0 16.143 0H6.143zm1.786 11.571a.857.857 0 1 1-1.713 0 .857.857 0 0 1 1.713 0zm5.142 0a.857.857 0 1 1-1.713 0 .857.857 0 0 1 1.713 0zm-2.571 1.429a1.714 1.714 0 1 0-3.429 0 1.714 1.714 0 0 0 3.428 0z" />
                     </svg>
-                    <span class="ms-3">Customers</span>
+                    <span class="ms-3">demo</span>
                 </a>
             </li>
             {{-- purchase --}}
@@ -103,7 +103,7 @@
                         <path
                             d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
                     </svg>
-                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Purchase</span>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Demo</span>
                     <svg class="w-3 h-3 transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -113,12 +113,12 @@
                 <ul id="dropdown-purchase" class="hidden py-2 space-y-2">
                     <li>
                         <a href="/inventories"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Inventories</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Demo</a>
                     </li>
                     <!-- Additional purchase related links can be added here -->
                     <li>
                         <a href="/purchases/create"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add Purchase</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Demo</a>
                     </li>
                     {{-- <li>
                         <a href="/purchase-history"
@@ -139,7 +139,7 @@
             <path
                 d="M2 4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4ZM4 6v10h12V6H4Z" />
         </svg>
-        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Orders</span>
+        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Demo</span>
         <svg class="w-3 h-3 transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
             fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -150,12 +150,12 @@
         <li>
             <a href="/orders"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                Sales Order View</a>
+                Demo</a>
         </li>
         <li>
             <a href="/orders/create"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Create
-                New Order</a>
+                Demo</a>
         </li>
     </ul>
 </li>
@@ -168,7 +168,7 @@
             <path
                 d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
         </svg>
-        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Manage Challan</span>
+        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Demo</span>
         <svg class="w-3 h-3 transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
             fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -179,12 +179,12 @@
         <li>
             <a href="/challans"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View
-                Trucks</a>
+                Demo</a>
         </li>
         <li>
             <a href="/challans/create"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add
-                Drivers</a>
+                Demo</a>
         </li>
     </ul>
 </li>
@@ -198,7 +198,7 @@
             <path
                 d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
         </svg>
-        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Sales</span>
+        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Demo</span>
         <svg class="w-3 h-3 transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
             fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -209,12 +209,12 @@
         <li>
             <a href="/sales"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View
-                Sales</a>
+                Demo</a>
         </li>
         <li>
             <a href="/sales/create"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add
-                New Sale</a>
+                Demo</a>
         </li>
     </ul>
 </li>
