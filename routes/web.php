@@ -6,6 +6,9 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\AddFacilityController;
 use App\Http\Controllers\PropertyImageController;
 use App\Http\Controllers\PropertySummaryController;
+use App\Http\Controllers\PropertyUnitController;
+use App\Http\Controllers\PriceController;
+use App\Http\Controllers\DiscountController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,3 +51,10 @@ Route::delete('/property_images/{image_id}', [PropertyImageController::class, 'd
 Route::resource('property-summary', PropertySummaryController::class);
 
 
+Route::apiResource('property-units', PropertyUnitController::class);
+
+
+Route::post('/price', [PriceController::class, 'store'])->name('price.store');
+
+
+Route::resource('discount', DiscountController::class);

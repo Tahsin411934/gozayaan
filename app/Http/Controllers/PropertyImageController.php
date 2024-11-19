@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PropertyImage;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
 class PropertyImageController extends Controller
@@ -36,19 +37,22 @@ class PropertyImageController extends Controller
         ]);
 
         // Redirect or return response
-        return redirect()->route('property_images.show',[$request->property_id])->with('success', 'Property image added successfully.');
+        return redirect()->back();
+        // return redirect()->route('property_images.show',[$request->property_id])->with('success', 'Property image added successfully.');
     }
 
     /**
      * Display the specified resource.
      */
     public function show($propertyId)
-    {
+    { 
+        $property = Property::where('property_id', $propertyId)->firstOrFail();
+
         // Fetch the property images for the given property ID
         $propertyImages = PropertyImage::where('property_id', $propertyId)->get();
     
         // Pass the propertyImages to the view
-        return view('property_images.show', compact('propertyImages', 'propertyId'));
+        return view('property_images.show', compact('propertyImages', 'propertyId', 'property'));
     }
     
 

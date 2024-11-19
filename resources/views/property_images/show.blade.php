@@ -1,12 +1,23 @@
 <x-app-layout>
-    <!-- Add Property Image Button -->
-    <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block mb-44 float-right mt-10 mr-16 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-        Add Property Image
-    </button>
 
-    <!-- Existing Property Images outside of Modal -->
-    <div class="mt-28 grid grid-cols-3">
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Existing Property Images</h3>
+    <div class="mb-8 p-6 mt-3 bg-gray-50 shadow-md mx-auto w-[95%] rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">Property Name: <span class="text-blue-600">{{ $property->property_name }}</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <p class="text-gray-700"><strong>District/City:</strong> {{ $property->district_city }}</p>
+            <p class="text-gray-700"><strong>Address:</strong> {{ $property->address }}</p>
+        </div>
+    </div>
+
+    <!-- Add Property Image Button -->
+    <div class="flex justify-end items-center mb-5 mr-10">
+        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+            Add Property Image
+        </button>
+    </div>
+
+    <!-- Existing Property Images -->
+    <div class="mt-10 grid grid-cols-3 gap-6">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white col-span-3">Existing Property Images</h3>
         @if($propertyImages->isNotEmpty())
             @foreach($propertyImages as $image)
                 <div class="relative">
@@ -23,7 +34,7 @@
                 </div>
             @endforeach
         @else
-            <p>No images found for this property.</p>
+            <p class="text-gray-700 col-span-3">No images found for this property.</p>
         @endif
     </div>
 

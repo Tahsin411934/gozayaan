@@ -62,5 +62,54 @@ public function show($property_id)
 }
 
 
+
+public function update(Request $request, $id)
+{
+    // Validate the incoming request
+    $request->validate([
+        'property_name' => 'required|string|max:255',
+        'description' => 'nullable|string|max:1000',
+        'city_district' => 'nullable|string|max:255',
+    ]);
+
+    // Find the summary by its ID
+    $summary = PropertySummary::find($id);
+
+    if ($summary) {
+        // Update the summary with the new data
+        $summary->value = $request->input('property_name');
+        $summary->image = $request->input('description');
+        $summary->display = $request->input('city_district');
+
+        // Save the updated summary
+        $summary->save();
+
+        // Redirect back with a success message
+        return redirect()->back();
+    }
+
+    // If the summary doesn't exist, redirect with an error message
+    return redirect()->route('property-summary.index')->with('error', 'Summary not found.');
+}
+
+
+public function destroy($id)
+{
+    
+    $summary = PropertySummary::find($id);
+
+   
+    if ($summary) {
+        
+        $summary->delete();
+
+       
+        return redirect()->back();
+    }
+
+    
+    return redirect()->route('property-summary.index')->with('error', 'Summary not found.');
+}
+
 }
 

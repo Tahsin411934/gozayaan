@@ -1,9 +1,12 @@
 <x-app-layout>
     <div class="container w-[95%] mx-auto">
         <h1 class="text-2xl font-bold mb-4">Property Details</h1>
-        <div class="border p-4 mb-6">
-            <p class="text-xl"><strong>Name:</strong> {{ $property->property_name }}</p>
-            <p><strong>ID:</strong> {{ $property->property_id }}</p>
+        <div class="mb-8 p-6 mt-3 bg-gray-50 shadow-md mx-auto w-[95%] rounded-lg">
+            <h2 class="text-2xl font-semibold mb-4">Property Name: <span class="text-blue-600">{{ $property->property_name }}</span></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <p class="text-gray-700"><strong>District/City:</strong> {{ $property->district_city }}</p>
+                <p class="text-gray-700"><strong>Address:</strong> {{ $property->address }}</p>
+            </div>
         </div>
         <div class="float-right mr-36">
             <!-- Button to Open Modal for Adding Summaries -->
@@ -108,16 +111,47 @@
                         <th class="px-4 py-2 border">Value</th>
                         <th class="px-4 py-2 border">Image</th>
                         <th class="px-4 py-2 border">Display</th>
+                        <th class="px-4 py-2 border">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+
+
+                    
                     @foreach ($summaries as $summary)
-                        <tr class="bg-white hover:bg-gray-50">
-                            <td class="px-4 py-2 border">{{ $summary->value }}</td>
-                            <td class="px-4 py-2 border">{{ $summary->image }}</td>
-                            <td class="px-4 py-2 border">{{ ucfirst($summary->display) }}</td>
-                        </tr>
+                    <tr class="bg-white hover:bg-gray-50">
+                        <form action="{{ route('property-summary.update', $summary->id) }}" method="POST" class="update-form">
+                            @csrf
+                            @method('PUT')
+                    
+                            <td>
+                                <textarea name="property_name" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $summary->value }}</textarea>
+                            </td>
+                            <td>
+                                <textarea name="description" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $summary->image }}</textarea>
+                            </td>
+                            <td>
+                                <textarea name="city_district" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ ucfirst($summary->display) }}</textarea>
+                            </td>
+                    
+                            <td class="flex space-x-2">
+                                <!-- Edit Button -->
+                                <button type="button" onclick="enableEdit(this)"
+                                    class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+                                <!-- Save Button -->
+                                <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hidden save-button">Save</button>
+                            </form>
+                                <!-- Delete Button -->
+                                <form action="{{ route('property-summary.destroy', $summary->id) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
+                                
+                            </td>
+                        </form>
+                    </tr>
                     @endforeach
+                    
                 </tbody>
             </table>
         </div>
@@ -146,5 +180,14 @@
                 alert('At least one row must remain!');
             }
         });
+    </script>
+    <script>
+        function enableEdit(button) {
+            const row = button.closest('tr');
+            row.querySelectorAll('textarea').forEach(textarea => textarea.disabled = false); // Enable all textarea fields
+            row.querySelectorAll('input').forEach(input => input.disabled = false); // Enable all input fields (if any)
+            button.classList.add('hidden'); // Hide the Edit button
+            row.querySelector('.save-button').classList.remove('hidden'); // Show the Save button
+        }
     </script>
 </x-app-layout>

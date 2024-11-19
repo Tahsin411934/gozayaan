@@ -19,6 +19,20 @@ class PropertyController extends Controller
         return view('properties.index', compact('properties', 'categories', 'destinations')); // Load view
     }
 
+
+    public function create(){
+        $properties = Property::all();
+        return response()->json([
+            'success'=>true,
+            'message' => "this is my first api test inside controller",
+            'data'=> $properties
+        ]);
+    }
+
+
+
+
+
     public function store(Request $request)
     {
 

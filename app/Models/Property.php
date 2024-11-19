@@ -33,5 +33,13 @@ public function facilities()
 {
     return $this->hasMany(PropertyFacility::class, 'property_id', 'property_id');
 }
+public function property_uinit()
+{
+    return $this->hasMany(PropertyUnit::class, 'property_id', 'property_id');
+}
+public function images()
+{
+    return $this->hasMany(PropertyUnit::class, 'property_id', 'property_id');
+}
 
 }
